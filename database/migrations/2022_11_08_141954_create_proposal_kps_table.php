@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('id_dosen')->constrained('dosens');
             $table->foreignId('id_mhs')->constrained('mahasiswas');
             $table->string('file_mhs');
-            $table->string('keterangan');
-            $table->string('catatan_dosen');
+            $table->string('keterangan')->nullable();
+            $table->string('catatan_dosen')->nullable();
             $table->timestamps();
         });
     }

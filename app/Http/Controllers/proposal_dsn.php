@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\pengajuan_mhs_model;
+use App\Models\proposal_kp;
 use App\Models\dosen;
-use App\Models\mahasiswa;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
-class pengajuan_dosen extends Controller
+class proposal_dsn extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +17,6 @@ class pengajuan_dosen extends Controller
      */
     public function index()
     {
-        // Nanti diedit sesuai dengan id dosennya
-        $data = pengajuan_mhs_model::where('id_dosen', 1)
-            ->get();
-        return view('dosen.pengajuan.index', [
-            'datas' => $data,
-        ]);
     }
 
     /**
@@ -64,7 +59,7 @@ class pengajuan_dosen extends Controller
      */
     public function edit($id)
     {
-        // 
+        //
     }
 
     /**
@@ -76,19 +71,7 @@ class pengajuan_dosen extends Controller
      */
     public function update(Request $request, $id)
     {
-        $status = null;
-        $pengajuan = pengajuan_mhs_model::where('id', $id)->get();
-        if ($request->accepted == 'accept') {
-            $status = true;
-        } else {
-            $status = false;
-        }
-
-        pengajuan_mhs_model::where('id', $id)->update([
-            'status' => $status
-        ]);
-        return back();
-        // ->with('success', 'mantap')
+        //
     }
 
     /**

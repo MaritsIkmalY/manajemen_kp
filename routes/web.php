@@ -5,6 +5,8 @@ use App\Http\Controllers\halaman_pengajuan_mhs_controller;
 use App\Http\Controllers\pengajuan_dosen;
 use App\Http\Controllers\monitoring_mahasiswa;
 use App\Http\Controllers\monitoring_dosen;
+use App\Http\Controllers\proposal_mhs;
+use App\Http\Controllers\proposal_dsn;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +30,7 @@ Route::resource('/dosen/pengajuan_dosen', pengajuan_dosen::class);
 Route::resource('/mahasiswa/monitoring_mahasiswa', monitoring_mahasiswa::class);
 
 Route::resource('/dosen/monitoring_dosen', monitoring_dosen::class);
+
+Route::resource('/mahasiswa/proposal_mahasiswa', proposal_mhs::class);
+
+Route::resource('dosen/proposal_dosen', proposal_dsn::class);

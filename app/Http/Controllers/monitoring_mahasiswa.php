@@ -58,6 +58,7 @@ class monitoring_mahasiswa extends Controller
         $nama_file = $request->file('file_mhs')->getClientOriginalName();
         $validateData['file_mhs'] = $request->file('file_mhs')->storeAs('monitoring', $nama_file, 'public');
         monitoring_mhs::create($validateData);
+        return redirect('mahasiswa/monitoring_mahasiswa/');
     }
 
     /**
