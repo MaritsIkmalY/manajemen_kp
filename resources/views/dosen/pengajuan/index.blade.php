@@ -22,7 +22,7 @@
             <th>Aksi</th>
         </tr>
         <tr>
-            @if(count($datas) == 0))
+            @if(count($datas) == 0)
                     <td colspan='4'>Data Kosong</td>
         </tr>
         @else
