@@ -6,6 +6,9 @@
     <title>Halaman Monitoring Dosen</title>
 </head>
 <body>
+    @if(Auth::user()->level==1)
+        
+    @endif
     <h1>
         Monitoring Dosen
     </h1>

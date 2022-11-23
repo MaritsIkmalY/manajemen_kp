@@ -28,6 +28,7 @@
                 @endforeach
             </select>
         </div>
+        <input type="hidden" name='id_mhs' value={{$id_mhs[0]->id}}>
         <div>
             <input type="submit" class="btn btn-primary" value="submit" name="submit">
         </div>

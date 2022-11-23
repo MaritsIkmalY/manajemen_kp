@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use App\Models\pengajuan_mhs_model;
-use App\Models\dosen;
+use App\Models\User;
 use App\Models\mahasiswa;
-use Illuminate\Support\Facades\Auth;
 
-
-class halaman_pengajuan_mhs_controller extends Controller
+class form_mhs extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +16,7 @@ class halaman_pengajuan_mhs_controller extends Controller
      */
     public function index()
     {
-        $id_user = Auth::user()->id;
-        $id_mhs = mahasiswa::where('id_user', $id_user)->get('id');
-        $data = pengajuan_mhs_model::where('id_mhs', $id_mhs[0]->id)
-            ->get();
-        return view('mahasiswa.pengajuan.index', [
-            'datas' => $data,
-        ]);
+        //
     }
 
     /**
@@ -34,14 +26,7 @@ class halaman_pengajuan_mhs_controller extends Controller
      */
     public function create()
     {
-        $id_user = Auth::user()->id;
-        $jurusan = mahasiswa::where('id_user', $id_user)->get('jurusan');
-        $dosen = dosen::where('jurusan', $jurusan[0]->jurusan)->get();
-        $id_mhs = mahasiswa::where('id_user', $id_user)->get('id');
-        return view('mahasiswa.pengajuan.create', [
-            'dosens' => $dosen,
-            'id_mhs' => $id_mhs,
-        ]);
+        return view('register.mahasiswa.create');
     }
 
     /**
@@ -52,18 +37,31 @@ class halaman_pengajuan_mhs_controller extends Controller
      */
     public function store(Request $request)
     {
-        // return ($request);
-        // Perlu diperbaiki saat kita menginputkan sesuai dengan id mahasiswanya
         $validateData =
             $request->validate([
-                "nama_tempat" => "required",
-                "job" => "required",
-                "id_dosen" => 'required',
-                "alamat" => "required",
-                'id_mhs' => "required",
+                'nama' => 'required',
+                'nrp' => 'required',
+                'kelas' => 'required',
+                'email' => 'required|unique:users',
+                'jurusan' => 'required',
+                'password' => 'required',
+                'level' => 'required',
             ]);
-        pengajuan_mhs_model::create($validateData);
-        return redirect('mahasiswa/pengajuan_mahasiswa/');
+        $validateData['password'] = Hash::make($request->password);
+        $user = User::create([
+            'email' => $validateData['email'],
+            'password' => $validateData['password'],
+            'level' => $validateData['level'],
+        ]);
+
+        mahasiswa::create([
+            'id_user' => $user->id,
+            'nama_mhs' => $validateData['nama'],
+            'nrp' => $validateData['nrp'],
+            'kelas' => $validateData['kelas'],
+            'jurusan' => $validateData['jurusan'],
+        ]);
+        return redirect('/');
     }
 
     /**
@@ -85,7 +83,7 @@ class halaman_pengajuan_mhs_controller extends Controller
      */
     public function edit($id)
     {
-        // 
+        //
     }
 
     /**
@@ -111,8 +109,3 @@ class halaman_pengajuan_mhs_controller extends Controller
         //
     }
 }
-
-        // $pending = pengajuan_mhs_model::where('status', null)->get();
-        // $rejected = pengajuan_mhs_model::where('status', false)->get();
-        // 'dataPending' => $pending,
-        // 'dataRejected' => $rejected,

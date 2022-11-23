@@ -7,6 +7,11 @@ use App\Http\Controllers\monitoring_mahasiswa;
 use App\Http\Controllers\monitoring_dosen;
 use App\Http\Controllers\proposal_mhs;
 use App\Http\Controllers\proposal_dsn;
+use App\Http\Controllers\form_dsn;
+use App\Http\Controllers\form_mhs;
+use App\Http\Controllers\loginController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +25,33 @@ use App\Http\Controllers\proposal_dsn;
 */
 
 Route::get('/', function () {
-    return view('login_register.dashboard_login');
+    return view('login.dashboard_login');
 });
 
-Route::resource('/mahasiswa/pengajuan_mahasiswa', halaman_pengajuan_mhs_controller::class);
+Route::resource('/register/dosen', form_dsn::class);
 
-Route::resource('/dosen/pengajuan_dosen', pengajuan_dosen::class);
+Route::resource('/register/mahasiswa', form_mhs::class);
 
-Route::resource('/mahasiswa/monitoring_mahasiswa', monitoring_mahasiswa::class);
+Route::post('/loginUser', [loginController::class, 'auth'])->name('loginUser.auth');
 
-Route::resource('/dosen/monitoring_dosen', monitoring_dosen::class);
+Route::middleware([
+    'dosen'
+])->group(function () {
+    Route::resource('dosen/proposal_dosen', proposal_dsn::class);
+    Route::resource('/dosen/monitoring_dosen', monitoring_dosen::class);
+    Route::resource('/dosen/pengajuan_dosen', pengajuan_dosen::class);
+    Route::get('/dosen', function () {
+        return view('/dosen.main_dsn');
+    });
+});
 
-Route::resource('/mahasiswa/proposal_mahasiswa', proposal_mhs::class);
-
-Route::resource('dosen/proposal_dosen', proposal_dsn::class);
+Route::middleware([
+    'mahasiswa'
+])->group(function () {
+    Route::resource('/mahasiswa/pengajuan_mahasiswa', halaman_pengajuan_mhs_controller::class);
+    Route::resource('/mahasiswa/monitoring_mahasiswa', monitoring_mahasiswa::class);
+    Route::resource('/mahasiswa/proposal_mahasiswa', proposal_mhs::class);
+    Route::get('/mahasiswa', function () {
+        return view('mahasiswa.main_mhs');
+    });
+});
