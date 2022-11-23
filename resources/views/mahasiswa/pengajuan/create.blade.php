@@ -17,6 +17,10 @@
             <input type="text" name="job" id="Job"/>
         </div>
         <div>
+            <label for="Alamat">Alamat</label>
+            <textarea name="alamat" id="Alamat" placeholder="alamat lengkap"></textarea>
+        </div>
+        <div>
             <label for="dosen">Dosen Pembimbing</label>
             <select name="id_dosen" id="dosen">
                 @foreach ($dosens as $dosen)

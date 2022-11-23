@@ -27,6 +27,9 @@
                 File
             </th>
             <th>
+                Revisi
+            </th>
+            <th>
                 Waktu
             </th>
         </tr>
@@ -58,6 +61,13 @@
                     <a href="/mahasiswa/proposal_mahasiswa/{{$data->id}}/edit" name="update" value="update">update</a>
                 </td>
                 <td>
+                    @if(is_null($data->file_dsn))
+                        <p>-</p>
+                    @else
+                    <a href="/storage/{{$data->file_dsn}}" download>Download</a>
+                    @endif
+                </td>
+                <td>
                     {{$data->created_at->diffForHumans()}}
                 </td>
             </tr>
@@ -80,7 +90,7 @@
             </div>
             <div>
                 <label for="keterangan">Keterangan</label>
-                <input type="text" name="keterangan" id="keterangan">
+                <textarea name="keterangan" id="keterangan"></textarea>
             </div>
             <button type="submit" name="submit">submit</button>
         </form>

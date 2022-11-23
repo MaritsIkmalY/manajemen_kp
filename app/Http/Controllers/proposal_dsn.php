@@ -17,6 +17,11 @@ class proposal_dsn extends Controller
      */
     public function index()
     {
+        $datas = proposal_kp::where('id_dosen', 1)
+            ->get();
+        return view('dosen.proposal.index', [
+            'datas' => $datas,
+        ]);
     }
 
     /**
@@ -59,7 +64,10 @@ class proposal_dsn extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = proposal_kp::where('id', $id)->get();
+        return view('dosen.proposal.edit', [
+            'data' => $data,
+        ]);
     }
 
     /**
@@ -71,7 +79,17 @@ class proposal_dsn extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $path = storage_path('app/public/monitoring/') . $file[0]->file_mhs;
+        $validateData =
+            $request->validate([
+                'catatan_dosen' => 'required',
+                'file_dsn' => ['required', 'mimes:pdf, docx'],
+            ]);
+        // dd($file[0]->file_mhs);
+        $nama_file = $request->file('file_dsn')->getClientOriginalName();
+        $validateData['file_dsn'] = $request->file('file_dsn')->storeAs('proposal', $nama_file, 'public');
+        proposal_kp::where('id', $id)->update($validateData);
+        return redirect('/proposal/proposal_mahasiswa/');
     }
 
     /**

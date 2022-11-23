@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("nama_tempat");
             $table->boolean("status")->nullable();
             $table->string("job");
+            $table->string("alamat");
             $table->foreignId("id_dosen")->constrained('dosens')->nullable();
             $table->foreignId("id_mhs")->constrained('mahasiswas')->nullable();
             $table->timestamps();

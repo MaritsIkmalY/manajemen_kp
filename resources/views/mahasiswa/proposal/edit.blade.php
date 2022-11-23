@@ -15,7 +15,7 @@
         </div>
         <div>
             <label for="keterangan">keterangan</label>
-            <input type="text" name="keterangan" id='keterangan' value="{{$data[0]->keterangan}}">
+            <textarea name="keterangan" id='keterangan'>{{$data[0]->keterangan}}</textarea>
         </div>
         <button>update</button>
     </form>

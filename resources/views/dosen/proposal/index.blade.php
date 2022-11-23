@@ -3,11 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Halaman Monitoring Mahasiswa</title>
+    <title>Halaman Proposal Dosen</title>
 </head>
 <body>
     <h1>
-        Monitoring Mahasiswa
+        Proposal Mahasiswa
     </h1>
     <table border='1'>
         <tr>
@@ -21,7 +21,13 @@
                 Keterangan
             </th>
             <th>
+                Catatan Dosen
+            </th>
+            <th>
                 File
+            </th>
+            <th>
+                Revisi
             </th>
             <th>
                 Waktu
@@ -29,7 +35,7 @@
         </tr>
         @if (count($datas)==0)
             <tr>
-                <td colspan='5'>Data Kosong</td>
+                <td colspan='7'>Data Kosong</td>
             </tr>
         @else
             @foreach ($datas as $data)
@@ -38,14 +44,28 @@
                     {{$data->mhs->nama_mhs}}
                 </td>
                 <td>
-                    {{$data->dosen->nama_dsn}}
+                    {{$data->dsn->nama_dsn}}
                 </td>
                 <td>
                     {{$data->keterangan}}
                 </td>
                 <td>
+                    @if(is_null($data->catatan_dosen))
+                        <p>-</p>
+                    @else
+                        {{$data->catatan_dosen}}
+                    @endif
+                </td>
+                <td>
                     <a href="/storage/{{$data->file_mhs}}" download>Download</a>
-                    <a href="/mahasiswa/monitoring_mahasiswa/{{$data->id}}/edit" name="update" value="update">update</a>
+                    <a href="/dosen/proposal_dosen/{{$data->id}}/edit" name="update" value="revisi">Revisi</a>
+                </td>
+                <td>
+                    @if(is_null($data->file_dsn))
+                        <p>-</p>
+                    @else
+                    <a href="/storage/{{$data->file_dsn}}" download>Download</a>
+                    @endif
                 </td>
                 <td>
                     {{$data->created_at->diffForHumans()}}
@@ -55,24 +75,5 @@
         @endif
         </table>
         <br>
-        <form action="{{route("monitoring_mahasiswa.store")}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div>
-                <label for="dosen">Dosen Pembimbing</label>
-                <select name="id_dosen" id="dosen">
-                    @foreach ($dosens as $dosen)
-                        <option value="{{$dosen->id}}">{{$dosen->nama_dsn}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                <input type="file" name="file_mhs">
-            </div>
-            <div>
-                <label for="keterangan">Keterangan</label>
-                <textarea name="keterangan" id="keterangan"></textarea>
-            </div>
-            <button type="submit" name="submit">submit</button>
-        </form>
     </body>
     </html>

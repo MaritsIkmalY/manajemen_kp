@@ -13,12 +13,13 @@
         <tr>
             <th>Nama Dosen</th>
             <th>Nama Tempat</th>
+            <th>Alamat</th>
             <th>Job</th>
             <th>Status</th>
         </tr>
         <tr>
             @if(count($datas) == 0)
-                    <td colspan='4'>Data Kosong</td>
+                    <td colspan='5'>Data Kosong</td>
         </tr>
         @else
             @foreach($datas as $data)
@@ -30,11 +31,14 @@
                     {{$data->nama_tempat}}
                 </td>
                 <td>
+                    {{$data->alamat}}
+                </td>
+                <td>
                     {{$data->job}}
                 </td>
                 <td>
                     @if(is_null($data->status))
-                        Dipending
+                        Diproses
                     @elseif($data->status == true)
                         Diterima
                     @elseif($data->status == false)

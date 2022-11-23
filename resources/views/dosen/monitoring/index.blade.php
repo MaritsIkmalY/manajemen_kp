@@ -15,6 +15,9 @@
                 Nama Mahasiswa
             </th>
             <th>
+                Kelas
+            </th>
+            <th>
                 Nama Dosen
             </th>
             <th>
@@ -29,13 +32,16 @@
         </tr>
         @if (count($datas)==0)
             <tr>
-                <td colspan='5'>Data Kosong</td>
+                <td colspan='6'>Data Kosong</td>
             </tr>
         @else
             @foreach ($datas as $data)
             <tr>
                 <td>
                     {{$data->mhs->nama_mhs}}
+                </td>
+                <td>
+                    {{$data->mhs->kelas}}
                 </td>
                 <td>
                     {{$data->dosen->nama_dsn}}

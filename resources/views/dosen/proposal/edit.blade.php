@@ -6,16 +6,17 @@
     <title>Edit Monitoring</title>
 </head>
 <body>
-    <form action="/mahasiswa/monitoring_mahasiswa/{{$data[0]->id}}" method="post" enctype="multipart/form-data">
+    <form action="/dosen/proposal_dosen/{{$data[0]->id}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div>
             <label for="file">File</label>
-            <input type="file" id="file" name='file_mhs' value="{{$data[0]->file_mhs}}">
+            <input type="file" id="file" name='file_dsn'">
         </div>
         <div>
-            <label for="keterangan">keterangan</label>
-            <textarea name="keterangan" id='keterangan'>{{$data[0]->keterangan}}</textarea>
+            <label for="catatan_dosen">Catatan Dosen</label>
+            <textarea name="catatan_dosen" id='catatan_dosen'>
+            </textarea>
         </div>
         <button>update</button>
     </form>

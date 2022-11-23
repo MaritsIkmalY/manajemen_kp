@@ -57,6 +57,7 @@ class halaman_pengajuan_mhs_controller extends Controller
                 "nama_tempat" => "required",
                 "job" => "required",
                 "id_dosen" => 'required',
+                "alamat" => "required",
                 // 'id_mhs' => "required",
             ]);
         pengajuan_mhs_model::create($validateData);

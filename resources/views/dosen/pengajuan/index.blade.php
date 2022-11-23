@@ -12,18 +12,20 @@
     </div>
     @endif --}}
     <h1>
-        Pending
+        Pengajuan Tempat KP 
     </h1>
     <table border='1'>
         <tr>
             <th>Nama Mahasiswa</th>
+            <th>Kelas</th>
             <th>Nama Tempat</th>
+            <th>Alamat</th>
             <th>Job</th>
             <th>Aksi</th>
         </tr>
         <tr>
             @if(count($datas) == 0)
-                    <td colspan='4'>Data Kosong</td>
+                    <td colspan='6'>Data Kosong</td>
         </tr>
         @else
             @foreach($datas as $data)
@@ -32,7 +34,13 @@
                     {{$data->mhs->nama_mhs}}
                 </td>
                 <td>
+                    {{$data->mhs->kelas}}
+                </td>
+                <td>
                     {{$data->nama_tempat}}
+                </td>
+                <td>
+                    {{$data->alamat}}
                 </td>
                 <td>
                     {{$data->job}}
