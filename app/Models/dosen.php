@@ -12,7 +12,7 @@ class dosen extends Model
 
     protected $guarded = ['id'];
 
-    public function dsn()
+    public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }

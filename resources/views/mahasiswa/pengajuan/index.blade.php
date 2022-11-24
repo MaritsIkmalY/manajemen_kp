@@ -25,7 +25,7 @@
             @foreach($datas as $data)
             <tr>
                 <td>
-                    {{$data->dosen->nama_dsn}}
+                    {{$data->dosen->user->nama}}
                 </td>
                 <td>
                     {{$data->nama_tempat}}

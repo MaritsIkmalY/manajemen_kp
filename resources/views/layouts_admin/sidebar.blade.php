@@ -3,43 +3,43 @@
       <div class="logo-details">
         <i class='bx bx-code-alt icon'></i>
           <div class="logo_name">Online MKP</div>
-          <i class='bx bx-menu' id="btn"></i>
+          <i class='bx bx-menu' id="btn" ></i>
       </div>
       <ul class="nav-list">
         <li>
-          <a href="#">
+          <a href="/admin">
             <i class='bx bx-grid-alt'></i>
             <span class="links_name">Dashboard</span>
           </a>
            <span class="tooltip">Dashboard</span>
         </li>
         <li>
-         <a href="#">
+         <a href="/register/mahasiswa/create">
            <i class='bx bx-user' ></i>
-           <span class="links_name">Pengajuan</span>
+           <span class="links_name">Mahasiswa</span>
          </a>
-         <span class="tooltip">Pengajuan</span>
+         <span class="tooltip">Mahasiswa</span>
        </li>
        <li>
-         <a href="#">
+         <a href="/register/dosen/create">
            <i class='bx bx-chat' ></i>
-           <span class="links_name">Monitoring</span>
+           <span class="links_name">Dosen</span>
          </a>
-         <span class="tooltip">Monitoring</span>
+         <span class="tooltip">Dosen</span>
        </li>
        <li>
-         <a href="#">
+         <a href="/register/admin/create">
            <i class='bx bx-pie-chart-alt-2' ></i>
-           <span class="links_name">Proposal</span>
+           <span class="links_name">Admin</span>
          </a>
-         <span class="tooltip">Proposal</span>
+         <span class="tooltip">Admin</span>
        </li>
        <li class="profile">
            <div class="profile-details">
              <!--<img src="profile.jpg" alt="profileImg">-->
              <div class="name_job">
-               <div class="name">Nama User</div>
-               <div class="job">Jurusan</div>
+               <div class="name">{{Auth::user()->nama}}</div>
+               <div class="job">Playing</div>
              </div>
            </div>
            <form action="{{route('loginUser.logout')}}" method="post">

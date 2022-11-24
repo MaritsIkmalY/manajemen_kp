@@ -17,11 +17,21 @@ class loginController extends Controller
         if (Auth::attempt($validateData)) {
             if (Auth::user()->level == 1) {
                 return view('/dosen/main_dsn');
-            } else {
+            } else if (Auth::user()->level == 2) {
                 return view('/mahasiswa/main_mhs');
+            } else if (Auth::user()->level == 3) {
+                return view('/admin/main_admin');
             }
         } else {
             return 'isWrong';
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

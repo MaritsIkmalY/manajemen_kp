@@ -26,10 +26,13 @@ class RedirectIfAuthenticated
                 return redirect(RouteServiceProvider::HOME);
             }
             if (Auth::user()->level == 1) {
-                return redirect('dosen/main_dsn');
+                return redirect('/dosen');
             }
             if (Auth::user()->level == 2) {
-                return redirect('mahasiswa/main_mhs');
+                return redirect('/mahasiswa');
+            }
+            if (Auth::user()->level == 3) {
+                return redirect('/admin');
             }
         }
         return $next($request);

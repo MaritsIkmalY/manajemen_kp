@@ -10,6 +10,7 @@ use App\Http\Controllers\proposal_dsn;
 use App\Http\Controllers\form_dsn;
 use App\Http\Controllers\form_mhs;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\form_admin;
 
 
 
@@ -28,11 +29,10 @@ Route::get('/', function () {
     return view('login.dashboard_login');
 });
 
-Route::resource('/register/dosen', form_dsn::class);
-
-Route::resource('/register/mahasiswa', form_mhs::class);
-
 Route::post('/loginUser', [loginController::class, 'auth'])->name('loginUser.auth');
+
+Route::post('/logout', [loginController::class, 'logout'])->name('loginUser.logout');
+
 
 Route::middleware([
     'dosen'
@@ -53,5 +53,16 @@ Route::middleware([
     Route::resource('/mahasiswa/proposal_mahasiswa', proposal_mhs::class);
     Route::get('/mahasiswa', function () {
         return view('mahasiswa.main_mhs');
+    });
+});
+
+Route::middleware([
+    'admin'
+])->group(function () {
+    Route::resource('/register/dosen', form_dsn::class);
+    Route::resource('/register/mahasiswa', form_mhs::class);
+    Route::resource('/register/admin', form_admin::class);
+    Route::get('/admin', function () {
+        return view('admin.main_admin');
     });
 });

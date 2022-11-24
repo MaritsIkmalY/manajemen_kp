@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_user')->constrained('users');
             $table->string('nrp');
-            $table->string('nama_mhs');
             $table->string('kelas');
             $table->string('jurusan');
             $table->timestamps();

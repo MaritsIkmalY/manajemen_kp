@@ -238,11 +238,16 @@
   width: calc(100% - 250px);
 }
 .main-section .text{
-  display: inline-block;
-  color: #11101d;
-  font-size: 25px;
+  display: flex-column;
+  background: #1D1B31;
+  color: #fafafa;
   font-weight: 500;
-  margin: 18px
+  padding: 18px;
+}
+
+.main-section .text h5{
+  font-size: 25px;
+  margin: 0 18px;
 }
 
 .main-section .content{
@@ -250,6 +255,24 @@
   color: #11101d;
   font-size: 18px;
   margin: 18px;
+  padding: 18px;
+}
+
+.main-section .content .submit{
+    width: 20%;
+    height: 36px;
+    font-size: 16px;
+    background: #5783db;
+    border-radius: 8px;
+    color: #FFFFFF;
+    border: none;
+}
+
+.main-section .content .submit:hover{
+  color: #5783db;
+  background: #ffffff;
+  border: solid #5783db;
+  transition:0.4s;
 }
 @media (max-width: 420px) {
   .sidebar li .tooltip{

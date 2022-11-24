@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\admin;
 use App\Models\User;
-use App\Models\dosen;
 
-class form_dsn extends Controller
+class form_admin extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +26,7 @@ class form_dsn extends Controller
      */
     public function create()
     {
-        return view('register.dosen.create');
+        return view('register.admin.create');
     }
 
     /**
@@ -43,25 +42,22 @@ class form_dsn extends Controller
                 'nama' => 'required',
                 'nip' => 'required',
                 'email' => 'required|unique:users',
-                'jurusan' => 'required',
                 'password' => 'required',
                 'level' => 'required',
             ]);
         $validateData['password'] = Hash::make($request->password);
         $user = User::create([
             'email' => $validateData['email'],
-            'password' => $validateData['password'],
             'nama' => $validateData['nama'],
+            'password' => $validateData['password'],
             'level' => $validateData['level'],
         ]);
-        // $id = $user->id;
-        // dd($id);
-        dosen::create([
+
+        admin::create([
             'id_user' => $user->id,
             'nip' => $validateData['nip'],
-            'jurusan' => $validateData['jurusan'],
         ]);
-        return redirect('/admin');
+        return redirect('/admins');
     }
 
     /**

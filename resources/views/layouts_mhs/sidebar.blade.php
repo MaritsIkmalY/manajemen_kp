@@ -38,11 +38,22 @@
            <div class="profile-details">
              <!--<img src="profile.jpg" alt="profileImg">-->
              <div class="name_job">
-               <div class="name">Nama User</div>
-               <div class="job">Jurusan</div>
+               <div class="name">{{Auth::user()->nama}}</div>
+               <div class="job">
+                @php
+                  // use Illuminate\Support\Facades\Auth;
+                  $jurusan = App\Models\mahasiswa::where('id_user',Auth::user()->id)->get('jurusan');
+                @endphp
+                {{$jurusan[0]->jurusan}}
+               </div>
              </div>
            </div>
-           <i class='bx bx-log-out' id="log_out" ></i>
+           <form action="{{route('loginUser.logout')}}" method="post">
+            @csrf
+            <button>
+              <i class='bx bx-log-out' id="log_out" ></i>
+            </button>
+          </form>
        </li>
       </ul>
     </div>

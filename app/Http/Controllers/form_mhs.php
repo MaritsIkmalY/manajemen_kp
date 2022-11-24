@@ -50,18 +50,18 @@ class form_mhs extends Controller
         $validateData['password'] = Hash::make($request->password);
         $user = User::create([
             'email' => $validateData['email'],
+            'nama' => $validateData['nama'],
             'password' => $validateData['password'],
             'level' => $validateData['level'],
         ]);
 
         mahasiswa::create([
             'id_user' => $user->id,
-            'nama_mhs' => $validateData['nama'],
             'nrp' => $validateData['nrp'],
             'kelas' => $validateData['kelas'],
             'jurusan' => $validateData['jurusan'],
         ]);
-        return redirect('/');
+        return redirect('/admin');
     }
 
     /**

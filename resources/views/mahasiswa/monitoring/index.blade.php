@@ -35,10 +35,10 @@
             @foreach ($datas as $data)
             <tr>
                 <td>
-                    {{$data->mhs->nama_mhs}}
+                    {{$data->mhs->user->nama}}
                 </td>
                 <td>
-                    {{$data->dosen->nama_dsn}}
+                    {{$data->dosen->user->nama}}
                 </td>
                 <td>
                     {{$data->keterangan}}
@@ -61,7 +61,7 @@
                 <label for="dosen">Dosen Pembimbing</label>
                 <select name="id_dosen" id="dosen">
                     @foreach ($dosens as $dosen)
-                        <option value="{{$dosen->id}}">{{$dosen->nama_dsn}}</option>
+                        <option value="{{$dosen->id}}">{{$dosen->user->nama}}</option>
                     @endforeach
                 </select>
             </div>

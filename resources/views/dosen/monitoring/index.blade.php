@@ -41,13 +41,13 @@
             @foreach ($datas as $data)
             <tr>
                 <td>
-                    {{$data->mhs->nama_mhs}}
+                    {{$data->mhs->user->nama}}
                 </td>
                 <td>
                     {{$data->mhs->kelas}}
                 </td>
                 <td>
-                    {{$data->dosen->nama_dsn}}
+                    {{$data->dosen->user->nama}}
                 </td>
                 <td>
                     {{$data->keterangan}}
