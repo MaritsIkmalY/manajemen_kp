@@ -34,14 +34,7 @@ class halaman_pengajuan_mhs_controller extends Controller
      */
     public function create()
     {
-        $id_user = Auth::user()->id;
-        $jurusan = mahasiswa::where('id_user', $id_user)->get('jurusan');
-        $dosen = dosen::where('jurusan', $jurusan[0]->jurusan)->get();
-        $id_mhs = mahasiswa::where('id_user', $id_user)->get('id');
-        return view('mahasiswa.pengajuan.create', [
-            'dosens' => $dosen,
-            'id_mhs' => $id_mhs,
-        ]);
+        //        
     }
 
     /**
