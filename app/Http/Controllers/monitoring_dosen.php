@@ -65,7 +65,8 @@ class monitoring_dosen extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = monitoring_mhs::where('id', $id)->get();
+        return $data;
     }
 
     /**
@@ -77,7 +78,11 @@ class monitoring_dosen extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'catatan' => 'required',
+        ]);
+        monitoring_mhs::where('id', $id)->update($validateData);
+        return redirect('/dosen/monitoring_dosen');
     }
 
     /**

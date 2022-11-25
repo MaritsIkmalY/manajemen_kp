@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('id_mhs')->constrained('mahasiswas');
             $table->string('file_mhs');
             $table->string('keterangan')->nullable();
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
     }

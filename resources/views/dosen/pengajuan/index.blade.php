@@ -4,13 +4,14 @@
 
 <section class="main-section">
     <div class="text">
-        <h5>Pengajuan Tempat KP Mahasiswa</h5>
+        <h5>Pengajuan</h5>
     </div>
     <div class="content">
         <table class='table table-striped table-bordered table-hover'>
-            <thead class="table-dark">
+            <thead class="table-dark text-center">
                 <tr>
                     <th>#</th>
+                    <th>NRP</th>
                     <th>Mahasiswa</th>
                     <th>Kelas</th>
                     <th>Tempat</th>
@@ -22,7 +23,7 @@
             <tbody>
                 <tr>
                     @if (count($datas) == 0)
-                        <td colspan='7'>Data Kosong</td>
+                        <td colspan='8'>Data Kosong</td>
                 </tr>
             @else
                 <?php $i = 1; ?>
@@ -30,6 +31,9 @@
                     <tr>
                         <td>
                             {{ $i++ }}
+                        </td>
+                        <td>
+                            {{ $data->mhs->nrp }}
                         </td>
                         <td>
                             {{ $data->mhs->user->nama }}

@@ -65,9 +65,10 @@ class proposal_dsn extends Controller
     public function edit($id)
     {
         $data = proposal_kp::where('id', $id)->get();
-        return view('dosen.proposal.edit', [
-            'data' => $data,
-        ]);
+        return $data;
+        // return view('dosen.proposal.edit', [
+        //     'data' => $data,
+        // ]);
     }
 
     /**
@@ -89,7 +90,7 @@ class proposal_dsn extends Controller
         $nama_file = $request->file('file_dsn')->getClientOriginalName();
         $validateData['file_dsn'] = $request->file('file_dsn')->storeAs('proposal', $nama_file, 'public');
         proposal_kp::where('id', $id)->update($validateData);
-        return redirect('/proposal/proposal_mahasiswa/');
+        return redirect('/dosen/proposal_dosen/');
     }
 
     /**

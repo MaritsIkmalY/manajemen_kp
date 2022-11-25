@@ -2,7 +2,7 @@
 @include('layouts_mhs.sidebar')
 <section class="main-section">
     <div class="text">
-        <h5>Monitoring Mahasiswa</h5>
+        <h5>Monitoring</h5>
     </div>
     <div class="content">
         <table class='table table-striped table-bordered table-hover'>
@@ -12,16 +12,22 @@
                         #
                     </th>
                     <th>
-                        Mahasiswa
+                        NRP
                     </th>
                     <th>
-                        Dosen
+                        Mahasiswa
                     </th>
                     <th>
                         File
                     </th>
                     <th>
                         Keterangan
+                    </th>
+                    <th>
+                        Dosen
+                    </th>
+                    <th>
+                        Catatan
                     </th>
                     <th>
                         Waktu
@@ -32,7 +38,7 @@
 
                 @if (count($datas) == 0)
                     <tr>
-                        <td colspan='6'>Data Kosong</td>
+                        <td colspan='8'>Data Kosong</td>
                     </tr>
                 @else
                     <?php $i = 1; ?>
@@ -42,10 +48,10 @@
                                 {{ $i++ }}
                             </td>
                             <td>
-                                {{ $data->mhs->user->nama }}
+                                {{ $data->mhs->nrp }}
                             </td>
                             <td>
-                                {{ $data->dosen->user->nama }}
+                                {{ $data->mhs->user->nama }}
                             </td>
                             <td>
                                 <a href="/storage/{{ $data->file_mhs }}" download>
@@ -107,6 +113,16 @@
                             </td>
                             <td>
                                 {{ $data->keterangan }}
+                            </td>
+                            <td>
+                                {{ $data->dosen->user->nama }}
+                            </td>
+                            <td>
+                                @if (is_null($data->catatan))
+                                    -
+                                @else
+                                    {{ $data->catatan }}
+                                @endif
                             </td>
                             <td>
                                 {{ $data->created_at->diffForHumans() }}

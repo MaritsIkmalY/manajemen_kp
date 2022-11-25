@@ -2,7 +2,7 @@
 @include('layouts_mhs.sidebar')
 <section class="main-section">
     <div class="text">
-        <h5>Pengumpulan Proposal</h5>
+        <h5>Proposal</h5>
     </div>
     <div class="content">
         <table class='table table-bordered table-striped table-hover'>
@@ -12,16 +12,19 @@
                         #
                     </th>
                     <th>
-                        Mahasiswa
+                        NRP
                     </th>
                     <th>
-                        Dosen
+                        Mahasiswa
                     </th>
                     <th>
                         File
                     </th>
                     <th>
                         Keterangan
+                    </th>
+                    <th>
+                        Dosen
                     </th>
                     <th>
                         Revisi
@@ -38,7 +41,7 @@
 
                 <tr>
                     @if (count($datas) == 0)
-                        <td colspan='7'>Data Kosong</td>
+                        <td colspan='9'>Data Kosong</td>
                 </tr>
             @else
                 <?php $i = 1; ?>
@@ -48,10 +51,10 @@
                             {{ $i++ }}
                         </td>
                         <td>
-                            {{ $data->mhs->user->nama }}
+                            {{ $data->mhs->nrp }}
                         </td>
                         <td>
-                            {{ $data->dsn->user->nama }}
+                            {{ $data->mhs->user->nama }}
                         </td>
                         <td>
                             <a href="/storage/{{ $data->file_mhs }}" download>
@@ -111,6 +114,9 @@
                         </td>
                         <td>
                             {{ $data->keterangan }}
+                        </td>
+                        <td>
+                            {{ $data->dsn->user->nama }}
                         </td>
                         <td>
                             @if (is_null($data->file_dsn))

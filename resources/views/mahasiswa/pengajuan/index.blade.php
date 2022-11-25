@@ -2,24 +2,26 @@
 @include('layouts_mhs.sidebar')
 <section class="main-section">
     <div class="text">
-        <h5>Pengajuan Tempat KP</h5>
+        <h5>Pengajuan</h5>
     </div>
     <div class="content">
         <table class='table table-striped table-bordered table-hover table-responsive'>
             <thead class='table-dark'>
                 <tr>
                     <th>#</th>
+                    <th>NRP</th>
+                    <th>Nama</th>
                     <th>Tempat</th>
                     <th>Alamat</th>
                     <th>Job</th>
-                    <th>Status</th>
                     <th>Dosen</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     @if (count($datas) == 0)
-                        <td colspan='5'>Data Kosong</td>
+                        <td colspan='8'>Data Kosong</td>
                 </tr>
             @else
                 <?php $i = 1; ?>
@@ -27,6 +29,12 @@
                     <tr>
                         <td>
                             {{ $i++ }}
+                        </td>
+                        <td>
+                            {{ $data->mhs->nrp }}
+                        </td>
+                        <td>
+                            {{ $data->mhs->user->nama }}
                         </td>
                         <td>
                             {{ $data->nama_tempat }}
@@ -38,16 +46,22 @@
                             {{ $data->job }}
                         </td>
                         <td>
-                            @if (is_null($data->status))
-                                Diproses
-                            @elseif($data->status == true)
-                                Diterima
-                            @elseif($data->status == false)
-                                Ditolak
-                            @endif
+                            {{ $data->dosen->user->nama }}
                         </td>
                         <td>
-                            {{ $data->dosen->user->nama }}
+                            @if (is_null($data->status))
+                                <p class='text-secondary'>
+                                    Diproses
+                                </p>
+                            @elseif($data->status == true)
+                                <p class='text-primary'>
+                                    Diterima
+                                </p>
+                            @elseif($data->status == false)
+                                <p class='text-danger'>
+                                    Ditolak
+                                </p>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

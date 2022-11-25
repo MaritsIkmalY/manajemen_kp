@@ -6,7 +6,7 @@
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
-<script script>
+<script>
     function editMonitoring(id) {
         $.get(`/mahasiswa/monitoring_mahasiswa/${id}/edit`, (data) => {
             $('#form-edit').prop('action', `/mahasiswa/monitoring_mahasiswa/${id}`)
