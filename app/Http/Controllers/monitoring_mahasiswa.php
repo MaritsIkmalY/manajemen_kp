@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\monitoring_mhs;
 use App\Models\dosen;
+use App\Models\mahasiswa;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class monitoring_mahasiswa extends Controller
 {
@@ -17,15 +19,17 @@ class monitoring_mahasiswa extends Controller
      */
     public function index()
     {
-        // dd('Halo');
-        // Disesuaikan dengan Id Mahasiswa dan Jurusan Mahasiswa
-        $data = monitoring_mhs::where('id_mhs', 1)
+        $id_user = Auth::user()->id;
+        $id_mhs = mahasiswa::where('id_user', $id_user)->get('id');
+        $jurusan = mahasiswa::where('id_user', $id_user)->get('jurusan');
+        $data = monitoring_mhs::where('id_mhs', $id_mhs[0]->id)
             ->get();
-        $dosen = dosen::where('jurusan', 'Teknik Informatika')
+        $dosen = dosen::where('jurusan', $jurusan[0]->jurusan)
             ->get();
         return view('mahasiswa.monitoring.index', [
             'datas' => $data,
             'dosens' => $dosen,
+            'id_mhs' => $id_mhs,
         ]);
     }
 
@@ -52,7 +56,7 @@ class monitoring_mahasiswa extends Controller
             $request->validate([
                 'keterangan' => 'required',
                 'id_dosen' => 'required',
-                // 'id_mhs' => 'required',
+                'id_mhs' => 'required',
                 'file_mhs' => ['required', 'mimes:pdf, docx'],
             ]);
         $nama_file = $request->file('file_mhs')->getClientOriginalName();
@@ -81,9 +85,7 @@ class monitoring_mahasiswa extends Controller
     public function edit($id)
     {
         $data = monitoring_mhs::where('id', $id)->get();
-        return view('mahasiswa.monitoring.edit', [
-            'data' => $data,
-        ]);
+        return $data;
     }
 
     /**
