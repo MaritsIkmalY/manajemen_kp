@@ -8,6 +8,7 @@ use App\Models\dosen;
 use App\Models\mahasiswa;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class monitoring_dosen extends Controller
 {
@@ -18,7 +19,9 @@ class monitoring_dosen extends Controller
      */
     public function index()
     {
-        $datas = monitoring_mhs::where('id_dosen', 1)
+        $id_user = Auth::user()->id;
+        $id_dsn = dosen::where('id_user', $id_user)->get('id');
+        $datas = monitoring_mhs::where('id_dosen', $id_dsn[0]->id)
             ->get();
         return view('dosen.monitoring.index', [
             'datas' => $datas,

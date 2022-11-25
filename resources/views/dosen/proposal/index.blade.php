@@ -40,7 +40,7 @@
 
                 @if (count($datas) == 0)
                     <tr>
-                        <td colspan='7'>Data Kosong</td>
+                        <td colspan='8' class='text-center'>Data Kosong</td>
                     </tr>
                 @else
                     <?php $i = 1; ?>
@@ -70,25 +70,25 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Revisi
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Perbaikan
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <form action="/dosen/proposal_dosen/{{ $data->id }}" method="post"
-                                                    enctype="multipart/form-data" id='form-revision'>
+                                                    enctype="multipart/form-data" id='form-revision' class='form'>
                                                     @csrf
                                                     @method('put')
-                                                    {{ $data->id }}
-                                                    <div>
-                                                        <label for="file">File</label>
-                                                        <p id='filename'>{{ $data->file_dsn }}</p>
-                                                        <input type="file" id="file" name='file_dsn'">
+                                                    <div class='mb-3'>
+                                                        <label class='form-label'for="file">File</label>
+                                                        <p id='filename' class='filename'>{{ $data->file_dsn }}</p>
+                                                        <input class='form-control' type="file" id="file"
+                                                            name='file_dsn'">
                                                     </div>
-                                                    <div>
-                                                        <label for="catatan">Catatan</label>
-                                                        <textarea name="catatan_dosen" id='catatan'>{{ $data->catatan_dosen }}</textarea>
+                                                    <div class='mb-3'>
+                                                        <label class='form-label' for="catatan">Catatan</label>
+                                                        <textarea class='form-control' rows='3' name="catatan_dosen" id='catatan'>{{ $data->catatan_dosen }}</textarea>
                                                     </div>
                                             </div>
                                             <div class="modal-footer">

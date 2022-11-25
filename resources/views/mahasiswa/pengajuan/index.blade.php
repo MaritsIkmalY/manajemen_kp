@@ -21,7 +21,7 @@
             <tbody>
                 <tr>
                     @if (count($datas) == 0)
-                        <td colspan='8'>Data Kosong</td>
+                        <td colspan='8' class='text-center'>Data Kosong</td>
                 </tr>
             @else
                 <?php $i = 1; ?>
@@ -70,7 +70,7 @@
         </table>
         <br>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Mengajukan KP
+            Ajukan KP
         </button>
 
         <!-- Modal -->
@@ -78,27 +78,28 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Pengajuan Tempat KP</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Pengajuan</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('pengajuan_mahasiswa.store') }}" method="post">
+                        <form action="{{ route('pengajuan_mahasiswa.store') }}" method="post" class='form'>
                             @csrf
-                            <div>
-                                <label for="Nama-Tempat">Nama Tempat</label>
-                                <input type="text" name="nama_tempat" id="Nama-Tempat" />
+                            <div class='mb-3'>
+                                <label class='form-label' for="Nama-Tempat">Nama Tempat</label>
+                                <input class='form-control' type="text" name="nama_tempat" id="Nama-Tempat" />
                             </div>
-                            <div>
-                                <label for="Job">Job</label>
-                                <input type="text" name="job" id="Job" />
+                            <div class='mb-3'>
+                                <label class='form-label' for="Job">Job</label>
+                                <input class='form-control' type="text" name="job" id="Job" />
                             </div>
-                            <div>
-                                <label for="Alamat">Alamat</label>
-                                <textarea name="alamat" id="Alamat" placeholder="alamat lengkap"></textarea>
+                            <div class='mb-3'>
+                                <label class='form-label' for="Alamat">Alamat</label>
+                                <textarea class='form-control' rows='3' name="alamat" id="Alamat" placeholder="alamat lengkap"></textarea>
                             </div>
-                            <div>
-                                <label for="dosen">Dosen Pembimbing</label>
-                                <select name="id_dosen" id="dosen">
+                            <div class='mb-3'>
+                                <label class='form-label'for="dosen">Dosen Pembimbing</label>
+                                <select class="form-select" aria-label="Default select example" name="id_dosen"
+                                    id="dosen">
                                     @foreach ($dosens as $dosen)
                                         <option value="{{ $dosen->id }}">{{ $dosen->user->nama }}</option>
                                     @endforeach
@@ -107,7 +108,7 @@
                             <input type="hidden" name='id_mhs' value={{ $id_mhs[0]->id }}>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="submit" class='submit'>Submit</button>
+                        <button type="submit" name="submit" class='submit'>Ajukan</button>
                         </form>
                     </div>
                 </div>

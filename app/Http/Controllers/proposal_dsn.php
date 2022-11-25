@@ -7,6 +7,7 @@ use App\Models\proposal_kp;
 use App\Models\dosen;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class proposal_dsn extends Controller
 {
@@ -17,7 +18,9 @@ class proposal_dsn extends Controller
      */
     public function index()
     {
-        $datas = proposal_kp::where('id_dosen', 1)
+        $id_user = Auth::user()->id;
+        $id_dsn = dosen::where('id_user', $id_user)->get('id');
+        $datas = proposal_kp::where('id_dosen', $id_dsn[0]->id)
             ->get();
         return view('dosen.proposal.index', [
             'datas' => $datas,

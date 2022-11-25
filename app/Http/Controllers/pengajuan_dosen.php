@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\pengajuan_mhs_model;
 use App\Models\dosen;
 use App\Models\mahasiswa;
+use Illuminate\Support\Facades\Auth;
 
 class pengajuan_dosen extends Controller
 {
@@ -16,8 +17,9 @@ class pengajuan_dosen extends Controller
      */
     public function index()
     {
-        // Nanti diedit sesuai dengan id dosennya
-        $data = pengajuan_mhs_model::where('id_dosen', 1)
+        $id_user = Auth::user()->id;
+        $id_dsn = dosen::where('id_user', $id_user)->get('id');
+        $data = pengajuan_mhs_model::where('id_dosen', $id_dsn[0]->id)
             ->get();
         return view('dosen.pengajuan.index', [
             'datas' => $data,

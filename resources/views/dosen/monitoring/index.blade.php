@@ -36,7 +36,7 @@
             <tbody>
                 @if (count($datas) == 0)
                     <tr>
-                        <td colspan='7'>Data Kosong</td>
+                        <td colspan='7' class='text-center'>Data Kosong</td>
                     </tr>
                 @else
                     <?php $i = 1; ?>
@@ -66,7 +66,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Catatan
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Komentar
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
@@ -76,9 +76,9 @@
                                                     method="post" enctype="multipart/form-data" id='form-note'>
                                                     @csrf
                                                     @method('put')
-                                                    <div>
-                                                        <label for="catatan">Catatan</label>
-                                                        <textarea name="catatan" id='catatan'>{{ $data->catatan }}</textarea>
+                                                    <div class='mb-3'>
+                                                        <label class='form-label'for="catatan">Catatan</label>
+                                                        <textarea class='form-control' rows='3' name="catatan" id='catatan'>{{ $data->catatan }}</textarea>
                                                     </div>
                                             </div>
                                             <div class="modal-footer">

@@ -23,7 +23,7 @@
             <tbody>
                 <tr>
                     @if (count($datas) == 0)
-                        <td colspan='8'>Data Kosong</td>
+                        <td colspan='8' class='text-center'>Data Kosong</td>
                 </tr>
             @else
                 <?php $i = 1; ?>

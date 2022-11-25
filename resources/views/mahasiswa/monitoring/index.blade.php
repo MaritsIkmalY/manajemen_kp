@@ -38,7 +38,7 @@
 
                 @if (count($datas) == 0)
                     <tr>
-                        <td colspan='8'>Data Kosong</td>
+                        <td colspan='8' class='text-center'>Data Kosong</td>
                     </tr>
                 @else
                     <?php $i = 1; ?>
@@ -85,20 +85,21 @@
                                             </div>
                                             <div class="modal-body">
                                                 <form action="/mahasiswa/monitoring_mahasiswa/{{ $data->id }}"
-                                                    method="post" enctype="multipart/form-data" id='form-edit'>
+                                                    method="post" enctype="multipart/form-data" id='form-edit'
+                                                    class='form'>
                                                     @csrf
                                                     @method('put')
-                                                    <div>
-                                                        <label for="file">File</label>
-                                                        <p id='filename'>
+                                                    <div class='mb-3'>
+                                                        <label class='form-label'for="file">File</label>
+                                                        <p id='filename' class='filename'>
                                                             {{ $data->file_mhs }}
                                                         </p>
-                                                        <input type="file" id="file" name='file_mhs'
-                                                            value="{{ $data->file_mhs }}">
+                                                        <input class='form-control' type="file" id="file"
+                                                            name='file_mhs' value="{{ $data->file_mhs }}">
                                                     </div>
-                                                    <div>
-                                                        <label for="keterangan">keterangan</label>
-                                                        <textarea name="keterangan" id='keterangan'>{{ $data->keterangan }}</textarea>
+                                                    <div class='mb-3'>
+                                                        <label class='form-label' for="keterangan">keterangan</label>
+                                                        <textarea class='form-control' rows='3' name="keterangan" id='keterangan'>{{ $data->keterangan }}</textarea>
                                                     </div>
                                             </div>
                                             <div class="modal-footer">
@@ -137,7 +138,7 @@
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createMonitoring">
-            Laporan Monitoring
+            Laporkan Kegiatan
         </button>
 
         <!-- Modal Create-->
@@ -146,32 +147,33 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Laporan Monitoring</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Monitoring</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('monitoring_mahasiswa.store') }}" method="POST"
-                            enctype="multipart/form-data">
+                            enctype="multipart/form-data" class='form'>
                             @csrf
-                            <div>
-                                <label for="dosen">Dosen Pembimbing</label>
-                                <select name="id_dosen" id="dosen">
+                            <div class='mb-3'>
+                                <label class='form-label' for="dosen">Dosen Pembimbing</label>
+                                <select class='form-select' name="id_dosen" id="dosen">
                                     @foreach ($dosens as $dosen)
                                         <option value="{{ $dosen->id }}">{{ $dosen->user->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div>
-                                <input type="file" name="file_mhs">
+                            <div class='mb-3'>
+                                <label class='form-label' for="file">File</label>
+                                <input class='form-control' id='file' type="file" name="file_mhs">
                             </div>
-                            <div>
-                                <label for="keterangan">Keterangan</label>
-                                <textarea name="keterangan" id="keterangan"></textarea>
+                            <div class='mb-3'>
+                                <label class='form-label' for="keterangan">Keterangan</label>
+                                <textarea class='form-control' rows='3'name="keterangan" id="keterangan"></textarea>
                             </div>
                             <input type="hidden" name='id_mhs' value={{ $id_mhs[0]->id }}>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="submit" class='submit'>Submit</button>
+                        <button type="submit" name="submit" class='submit'>Laporkan</button>
                         </form>
                     </div>
                 </div>

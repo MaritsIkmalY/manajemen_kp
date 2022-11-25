@@ -5,26 +5,26 @@
         <h5>Formulir Admin</h5>
     </div>
     <div class="content">
-        <form action="{{route("admin.store")}}" method="post">
+        <form action="{{ route('admin.store') }}" method="post" class='form'>
             @csrf
-            <div>
-                <label for="nama">Nama</label>
-                <input type="text" id="nama" name="nama">
+            <div class='mb-3'>
+                <label class='form-label' for="nama">Nama</label>
+                <input class='form-control' type="text" id="nama" name="nama">
             </div>
-            <div>
-                <label for="nip">NIP</label>
-                <input type="text" id="nip" name="nip">
+            <div class='mb-3'>
+                <label class='form-label' for="nip">NIP</label>
+                <input class='form-control' type="text" id="nip" name="nip">
             </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email">
+            <div class='mb-3'>
+                <label class='form-label' for="email">Email</label>
+                <input class='form-control' type="email" id="email" name="email">
             </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+            <div class='mb-3'>
+                <label class='form-label' for="password">Password</label>
+                <input class='form-control' type="password" name="password" id="password">
             </div>
             <input type="hidden" name="level" value='3'>
-            <button name="submit" class='submit'>submit</button>
+            <button name="submit" class='btn btn-primary'>Buat Akun</button>
         </form>
     </div>
 </section>

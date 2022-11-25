@@ -247,6 +247,9 @@ a{
   color: #fafafa;
   font-weight: 500;
   padding: 18px;
+  /* position: fixed;
+  top: 0;
+  width : 100vw; */
 }
 
 .main-section .text h5{
@@ -279,6 +282,103 @@ a{
   transition:0.4s;
 }
 
+.main-section .content .form .filename{
+  background: #dde0e3;
+  border-radius: 5px;
+  padding-left : 5px;
+}
+
+/* Login */
+.login{
+  height: 100vh;
+}
+
+.header h1{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32 px;
+  line-height:48 px;
+  color: black;
+}
+
+.header p{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14 px;
+  line-height:21 px;
+  color: #737373;
+  margin-bottom: 20px;
+}
+
+.login-form label{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16 px;
+  line-height:24 px;
+  color: #000000;
+  margin-top: 20px;
+}
+
+.login-form input{
+  background: #FFFFFF;
+  border: 1px solid #BCBCBC;
+  box-sizing: border-box;
+  border-radius : 8px;
+}
+
+.login-form a{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14 px;
+  line-height:21 px;
+  color: #737373;
+  text-decoration: none;
+  margin: 20px 0;
+  display: block;
+  text-align: center;
+}
+
+.login-form .log-in {
+  width: 100%;
+  height: 42px;
+  background: #5783db;
+  border-radius: 8px;
+  color: #FFFFFF;
+  border: none;
+}
+
+.login-form .log-in:hover{
+  color: #5783db;
+  background: #ffffff;
+  border: solid #5783db;
+  transition:0.4s;
+}
+
+.login-form .sign-up {
+  width: 100%;
+  height: 42px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  color: #5783db;
+  margin: 10px 0 20px 0;
+  border: solid #5783db;
+}
+
+.login-form .sign-up:hover{
+  color: #ffffff;
+  background: #5783db;
+  transition:0.4s;
+}
+
+.login-rigt h5{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32 px;
+  line-height:48 px;
+  text-align :center;
+  color: #fafafa;
+  text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15);
+}
 
 @media (max-width: 420px) {
   .sidebar li .tooltip{
