@@ -84,15 +84,26 @@ class proposal_dsn extends Controller
     public function update(Request $request, $id)
     {
         // $path = storage_path('app/public/monitoring/') . $file[0]->file_mhs;
-        $validateData =
-            $request->validate([
-                'catatan_dosen' => 'required',
-                'file_dsn' => ['required', 'mimes:pdf, docx'],
+
+        // dd($request['files']);
+        // dd($request['file_dsn']);
+        // dd($request['catatan_dosen']);
+        if (is_null($request['file_dsn'])) {
+            proposal_kp::where('id', $id)->update([
+                'catatan_dosen' => $request['catatan_dosen'],
             ]);
-        // dd($file[0]->file_mhs);
-        $nama_file = $request->file('file_dsn')->getClientOriginalName();
-        $validateData['file_dsn'] = $request->file('file_dsn')->storeAs('proposal', $nama_file, 'public');
-        proposal_kp::where('id', $id)->update($validateData);
+        } else {
+
+            $validateData =
+                $request->validate([
+                    'catatan_dosen' => 'required',
+                    'file_dsn' => ['required', 'mimes:pdf, docx'],
+                ]);
+            // dd($file[0]->file_mhs);
+            $nama_file = $request->file('file_dsn')->getClientOriginalName();
+            $validateData['file_dsn'] = $request->file('file_dsn')->storeAs('proposal', $nama_file, 'public');
+            proposal_kp::where('id', $id)->update($validateData);
+        }
         return redirect('/dosen/proposal_dosen/');
     }
 
