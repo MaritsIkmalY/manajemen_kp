@@ -3,9 +3,11 @@
 
 
 <section class="main-section">
-    <div class="text"><h5>Dashboard</h5></div>
+    <div class="text">
+        <h5>Dashboard</h5>
+    </div>
     <div class="content">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus praesentium, perferendis itaque veritatis quasi ducimus tempora illo rerum debitis, nulla porro at minus accusamus et magnam mollitia quia eaque consectetur?</p>
+        <p>Halaman ini adalah dashboard Admin, Fitur-fitur dapat diakses melalui sidebar disamping.</p>
     </div>
 </section>
 
